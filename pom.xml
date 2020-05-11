@@ -75,7 +75,7 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
-
+        <!--springboot 用这个 druid-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
