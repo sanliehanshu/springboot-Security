@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springsecurity_vue.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.example.springsecurity_vue.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+    <resultMap id="lazyLoadRoles" type="com.example.springsecurity_vue.entity.User" extends="BaseResultMap">
+        <collection property="roles" ofType="com.example.springsecurity_vue.entity.Role" select="com.example.springsecurity_vue.mapper.UserMapper.getRolesByHrId"
+                    column="id"></collection>
+    </resultMap>
+    <select id="loadUserByUsername" resultMap="lazyLoadRoles">
+        select * from user WHERE username=#{username};
+    </select>
+    <select id="getRolesByHrId" resultType="com.example.springsecurity_vue.entity.Role">
+        SELECT r.* FROM user_role h,role r where h.rId=r.id AND h.uId=#{id}
+    </select>
+</mapper>
