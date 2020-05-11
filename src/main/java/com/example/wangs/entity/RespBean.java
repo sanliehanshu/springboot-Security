@@ -1,5 +1,7 @@
-package com.example.springsecurity_vue.entity;
-
+package com.example.wangs.entity;
+/**
+ * @author wangsheng
+ */
 public class RespBean {
     private Integer status;
     private String msg;

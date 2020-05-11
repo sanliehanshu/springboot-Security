@@ -1,8 +1,10 @@
-package com.example.springsecurity_vue.common;
+package com.example.wangs.common;
 
-import com.example.springsecurity_vue.entity.User;
+import com.example.wangs.entity.User;
 import org.springframework.security.core.context.SecurityContextHolder;
-
+/**
+ * @author wangsheng
+ */
 public class UserUtils {
 
     public static User getCurrentHr() {

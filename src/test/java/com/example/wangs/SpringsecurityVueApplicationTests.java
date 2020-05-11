@@ -1,4 +1,4 @@
-package com.example.springsecurity_vue;
+package com.example.wangs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

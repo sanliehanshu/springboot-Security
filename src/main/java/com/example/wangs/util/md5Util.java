@@ -1,11 +1,14 @@
-package com.example.springsecurity_vue.util;
+package com.example.wangs.util;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MD5Util {
+/**
+ * @author wangsheng
+ */
+public class md5Util {
 
     public static final int time = 5;
 
@@ -36,6 +39,6 @@ public class MD5Util {
     }
 
     public static void main(String[] args) {
-        System.out.println(MD5Util.encode("123456"));
+        System.out.println(md5Util.encode("123456"));
     }
 }

@@ -1,11 +1,13 @@
-package com.example.springsecurity_vue.entity;
+package com.example.wangs.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-
+/**
+ * @author wangsheng
+ */
 public class User implements UserDetails {
     private String id;
     private String username;

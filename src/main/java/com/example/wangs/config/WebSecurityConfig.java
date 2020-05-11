@@ -1,23 +1,20 @@
-package com.example.springsecurity_vue.config;
+package com.example.wangs.config;
 
-import com.example.springsecurity_vue.common.UserUtils;
-import com.example.springsecurity_vue.entity.RespBean;
-import com.example.springsecurity_vue.service.UserService;
+import com.example.wangs.common.UserUtils;
+import com.example.wangs.entity.RespBean;
+import com.example.wangs.service.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.*;
-import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -29,13 +26,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by sang on 2017/12/28.
+ *
+ *   @author wangsheng
+ *
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserService hrService;
+    UserServiceImpl hrService;
 
 
     @Override

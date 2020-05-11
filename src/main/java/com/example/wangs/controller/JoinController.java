@@ -1,8 +1,8 @@
-package com.example.springsecurity_vue.controller;
+package com.example.wangs.controller;
 
-import com.example.springsecurity_vue.entity.Role;
-import com.example.springsecurity_vue.entity.User;
-import com.example.springsecurity_vue.mapper.UserMapper;
+import com.example.wangs.entity.Role;
+import com.example.wangs.entity.User;
+import com.example.wangs.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author wangsheng
+ */
 @RestController
 public class JoinController {
     @Autowired
@@ -18,7 +21,7 @@ public class JoinController {
 
     @RequestMapping("/test")
     public List<Role> test(@RequestParam String id){
-        List<Role> rolesByHrId = usermapper.getRolesByHrId(id);
+        List<Role> rolesByHrId = usermapper.getRolesByUserId(id);
         return rolesByHrId;
     }
 
