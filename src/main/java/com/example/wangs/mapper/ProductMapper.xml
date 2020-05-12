@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.wangs.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.example.wangs.entity.Product">
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="name" property="name"/>
+        <collection property="category" ofType="com.example.wangs.entity.Category">
+            <id property="id" column="cid"/>
+            <result property="categoryName" column="category_name"/>
+            <result property="createTime" column="create_time"/>
+        </collection>
+    </resultMap>
+    <resultMap id="lazyLoadRoles" type="com.example.wangs.entity.Product" extends="BaseResultMap">
+        <collection property="category" ofType="com.example.wangs.entity.Category"
+                    select="com.example.wangs.mapper.ProductMapper.getRolesByUserId"
+                    column="id"></collection>
+    </resultMap>
+    <resultMap id="categoryMap" type="com.example.wangs.entity.Category">
+        <id property="id" column="id"/>
+        <result property="categoryName" column="category_name"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    <select id="selectByName" resultMap="lazyLoadRoles">
+        select * from product WHERE name=#{name};
+    </select>
+    <select id="getRolesByUserId" resultType="com.example.wangs.entity.Category">
+        SELECT r.* FROM category r inner join product_category h on h.category_id=r.id where  h.product_id=#{id}
+    </select>
+
+    <!--一次性查询出结果，减少数据库的操作-->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="String">
+         select p.*,c.id as cid,c.category_name from product p left join
+         product_category  pc on pc.product_id=p.id LEFT join category as c on c.id=pc.category_id where p.id=#{id}
+    </select>
+</mapper>
