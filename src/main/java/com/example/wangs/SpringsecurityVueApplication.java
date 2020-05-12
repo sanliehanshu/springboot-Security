@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author wangsheng
  */
 @SpringBootApplication
-@MapperScan("com.example.springsecurity_vue.mapper")
+@MapperScan("com.example.wangs.mapper")
 public class SpringsecurityVueApplication {
 
     public static void main(String[] args) {
