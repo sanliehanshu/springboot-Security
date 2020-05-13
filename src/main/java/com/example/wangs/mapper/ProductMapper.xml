@@ -34,4 +34,25 @@
          select p.*,c.id as cid,c.category_name from product p left join
          product_category  pc on pc.product_id=p.id LEFT join category as c on c.id=pc.category_id where p.id=#{id}
     </select>
+    
+    <select id="getProductById" resultType="string">
+        	select name from product where id=#{id}
+    </select>
+    
+    <select id="getAllProduct" resultType="com.example.wangs.entity.Product">
+        select * from product;
+    </select>
+
+    <select id="getProAsMapById" resultType="map">
+
+        select * from product where id = #{id}
+    </select>
+    
+    <select id="getAllProsAsMap" resultType="com.example.wangs.entity.Product">
+        select * from product;
+    </select>
+
+    <select id="getAllProsAsMapM" resultType="map">
+        select * from product;
+    </select>
 </mapper>
