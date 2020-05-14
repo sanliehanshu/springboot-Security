@@ -34,11 +34,11 @@
          select p.*,c.id as cid,c.category_name from product p left join
          product_category  pc on pc.product_id=p.id LEFT join category as c on c.id=pc.category_id where p.id=#{id}
     </select>
-    
+
     <select id="getProductById" resultType="string">
         	select name from product where id=#{id}
     </select>
-    
+
     <select id="getAllProduct" resultType="com.example.wangs.entity.Product">
         select * from product;
     </select>
@@ -47,12 +47,64 @@
 
         select * from product where id = #{id}
     </select>
-    
+
     <select id="getAllProsAsMap" resultType="com.example.wangs.entity.Product">
         select * from product;
     </select>
 
-    <select id="getAllProsAsMapM" resultType="map">
+    <select id="getAllProsAsMapM" resultType="java.util.Map">
         select * from product;
+    </select>
+    <!--
+    1. 如果传入的是单参数且参数类型是一个List的时候，collection属性值为list
+    2. 如果传入的是单参数且参数类型是一个array数组的时候，collection的属性值为array
+    3. 如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可
+
+        parameterType属性用于对应的mapper接口方法接受的参数类型，
+        resultType用于指定sql输出的结果类型。
+        pojo类类型。mybatis将sql查询结果的一行记录数据映射为resultType指定类型的对象。如果有多条数据，则分别进行映射，
+        并把对象放到容器List中。所以即使返回是list数组，resultType也是pojo类型
+
+        parameterType:
+        1. MyBatis的传入参数parameterType类型分两种
+           1. 1. 基本数据类型：int,string,long,Date;
+           1. 2. 复杂数据类型：类和Map
+    -->
+    <select id="getAllProsByListId"  resultType="com.example.wangs.entity.Product">
+        select * from product where id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+<!--    传入array-->
+    <select id="getAllProsByArrayId"  resultType="com.example.wangs.entity.Product">
+         select * from product where id in
+         <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+             #{item}
+         </foreach>
+    </select>
+<!--   传入map
+这种问题在xml处理sql的程序中经常需要我们来进行特殊处理。
+
+     其实很简单，我们只需作如下替换即可避免上述的错误：
+        <   &lt;
+
+        <=  &lt;=
+
+        >   &gt;
+
+        >=  &gt;=
+
+        &   &amp;
+
+        '   &apos;
+
+        "   &quot;
+-->
+    <select id="getAllProsByMap" resultType="com.example.wangs.entity.Product">
+         select * from product where 1=1 and create_time &gt;= #{create_time} and id in
+         <foreach collection="idListS" index="index" item="item" open="(" separator="," close=")">
+             #{item}
+         </foreach>
     </select>
 </mapper>

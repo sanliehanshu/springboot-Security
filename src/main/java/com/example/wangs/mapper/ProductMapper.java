@@ -23,8 +23,14 @@ public interface ProductMapper {
     // @MapKey 中的值表示用数据库中的哪个字段名作 key
     @MapKey("id")
     Map<String, Product> getAllProsAsMap();
-
+    //根据id
     @MapKey("id")
     Map<String, Map<String,Product>> getAllProsAsMapM();
+    //传入list
+    public List<Product> getAllProsByListId(List idList);
+    //传入array
+    public List<Product> getAllProsByArrayId(int[] idList);
+    //传入map
+    public List<Product> getAllProsByMap(Map<String,Object> productMap);
 
 }
